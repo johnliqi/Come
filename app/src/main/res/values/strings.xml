@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ComeonApplication</string>
     <string name="splash_skip">跳过</string>
+    <string name="str_main_shanghai">上海</string>
+    <string name="str_main_hangzhou">杭州</string>
+    <string name="str_main_shenzhen">深圳</string>
+    <string name="str_main_beijing">北京</string>
+
 </resources>

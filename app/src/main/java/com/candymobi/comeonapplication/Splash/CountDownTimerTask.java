@@ -1,10 +1,6 @@
 package com.candymobi.comeonapplication.Splash;
 
 import android.os.Handler;
-import android.os.Message;
-
-import java.util.Timer;
-
 
 public class CountDownTimerTask implements Runnable {
     // 1。 观察者模式
@@ -18,6 +14,20 @@ public class CountDownTimerTask implements Runnable {
     ICountDownHandler countDownHandler;
     Handler handler;
     public boolean isRun;
+
+    public interface ICountDownHandler {
+        void onTicker(int time);
+
+        void finish();
+    }
+
+    public CountDownTimerTask(int time, ICountDownHandler countDownHandler) {
+        handler = new Handler();
+        this.time = time;
+        CountTime = time;
+        this.countDownHandler = countDownHandler;
+
+    }
 
     @Override
     public void run() {
@@ -35,28 +45,17 @@ public class CountDownTimerTask implements Runnable {
             }
         }
     }
-// 开启 倒计时
+
+    // 开启 倒计时
     public void start() {
         isRun = true;
         handler.post(this);
     }
+
     // 取消倒计时
-    public  void cancel(){
-        isRun=false;
+    public void cancel() {
+        isRun = false;
         handler.removeCallbacks(this);
-    }
-
-    public interface ICountDownHandler {
-        void onTicker(int time);
-
-        void finish();
-    }
-
-
-    public CountDownTimerTask(int time, ICountDownHandler countDownHandler) {
-        handler = new Handler();
-        this.time = time;
-        this.countDownHandler = countDownHandler;
     }
 
 
